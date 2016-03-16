@@ -13,6 +13,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import me.peregrine.hayabusa.keyhandlers.ShowPlayingTime_ShowNowDateKey_Handler;
 import me.peregrine.hayabusa.keyhandlers.ShowPlayingTime_ShowTimeKey_Handler;
 import net.minecraft.client.settings.KeyBinding;
 /*
@@ -21,7 +22,7 @@ import net.minecraft.client.settings.KeyBinding;
  * 2016/03/15
  */
 
-@Mod(modid = "ShowPlayingTime", name = "ShowPlayingTime", version = "1.7.10_1.0a")
+@Mod(modid = "ShowPlayingTime", name = "ShowPlayingTime", version = "1.7.10_1.0")
 
 public class ShowPlayingTimeCore {
 
@@ -31,7 +32,7 @@ public class ShowPlayingTimeCore {
 	//Cキーが押された時の処理 インスタンス生成
 	@SideOnly(Side.CLIENT)
 	public static final KeyBinding inputKeyC = new KeyBinding("key.showplayingtime", Keyboard.KEY_C, "key.categories.gameplay");
-	public static final KeyBinding inputKeyV = new KeyBinding("key.showplayingtime", Keyboard.KEY_V, "key.categories.gameplay");
+	public static final KeyBinding inputKeyV = new KeyBinding("key.shownowdate", Keyboard.KEY_V, "key.categories.gameplay");
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) throws IOException
@@ -43,7 +44,10 @@ public class ShowPlayingTimeCore {
 	    }
 		ShowPlayingTime_ShowTimeKey_Handler keyinstance_C = new ShowPlayingTime_ShowTimeKey_Handler();
 		FMLCommonHandler.instance().bus().register(keyinstance_C);
-		//Cキーの処理をさせるクラスに投げる
+		//プレイ時間表示クラスに投げる
+		ShowPlayingTime_ShowNowDateKey_Handler keyinstance_V = new ShowPlayingTime_ShowNowDateKey_Handler();
+		FMLCommonHandler.instance().bus().register(keyinstance_V);
+		//おまけ機能 現在時間表示クラスに投げる
 
 	}
 	public static long startedtime;
@@ -51,7 +55,6 @@ public class ShowPlayingTimeCore {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		//postInitで起動時を取得
-		//フラグを設置してグローバル変数に投げている
 		//この実装は安全なのか…？
 		long i = System.currentTimeMillis();
 		System.out.println(i);
