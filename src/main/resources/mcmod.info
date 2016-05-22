@@ -4,13 +4,13 @@
   "name": "ShowPlayingTimeMod",
   "description": "Show your playing time. Show nowdate when you press same key.",
   "version": "1.0",
-  "mcversion": "1.7.10",
+  "mcversion": "1.8",
   "url": "http://peregrine.me",
   "updateUrl": "",
-  "authorList": ["Hayabusa"],
-  "credits": "The Forge and FML guys,made by Hayabusa.",
+  "authorList": ["Hayabusa, Eryngii"],
+  "credits": "The Forge and FML guys,made by Hayabusa, Updated by Eryngii.",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": ["required MinecraftForge after #1558."]
+  "dependencies": ["required MinecraftForge after #1563."]
 }
 ]
